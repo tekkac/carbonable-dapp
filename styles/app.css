@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @font-face {
     font-family: "americana";
     src: url("/assets/fonts/americana/Americana-Regular.woff2") format("woff2");
@@ -103,4 +104,38 @@ input[type='number'] {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+}
+
+.preventOverflow {
+  position: relative;
+  overflow: hidden;
+}
+
+.preventOverflow .slick-list {
+  overflow: visible;
+}
+
+.preventOverflow::before,
+.preventOverflow::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 124px;
+  z-index: 1;
+}
+
+
+
+@media screen and (min-width: 640px) {
+  .preventOverflow::before,
+    .preventOverflow::after {
+    content: "";
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .preventOverflow::before,
+    .preventOverflow::after {
+    width: 244px;
+  }
 }
