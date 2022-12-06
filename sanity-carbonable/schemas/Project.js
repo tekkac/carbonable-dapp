@@ -45,14 +45,17 @@ export default {
  
          },
          {
-            name: 'text',
-            type: 'text',
-            title: 'Sale date',
-            options: {
-                isHighlighted: true
+            name: 'content',
+            type: 'array',
+            title: 'page section',
+            of: [
+              {
+                type: "block"
               }
- 
+            ]
+     
          },
+         
        
     ]
     
