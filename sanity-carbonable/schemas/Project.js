@@ -1,36 +1,59 @@
 export default {
 
-    name: "Name",
-    slug: "Slug",
-    saleIsOpen: "Sale Status",
-    isSoldOut: "Soldout Status",
-    saleDate: "sale date",
-    contentReady: "readiness",
+    name: 'project',
+    type: 'document',
+    title: 'Projet',
     fields: [
         {
-           name: "Banegas Farm",
-           slug: "reforestation-banegas-farm-costa-rica",
-           saleIsOpen: false,
-           isSoldOut: true,
-           saleDate: new Date('2022-06-21T16:45:01.246Z'),
-           contentReady: true
+           name: 'name',
+           type: 'string',
+           title: 'Name',
+
         },
         {
-            name: "Las delicias",
-            slug: "mangroves-las-delicias-panama",
-            saleIsOpen: true,
-            isSoldOut: false,
-            saleDate: new Date('2022-12-21T16:45:01.246Z'),
-            contentReady: true
+            name: 'slug',
+            type: 'slug',
+            title: 'Slug',
+            options: {
+                source: 'title',
+                maxLenght: 96,
+            },
+ 
          },
          {
-             name: "Chaco Agroforestry",
-             slug: "agroforestry-chaco-paraguay",
-             saleIsOpen: true,
-             isSoldOut: false,
-             saleDate: new Date('2023-01-21T16:45:01.246Z'),
-             contentReady: false
-          }
+            name: 'saleIsOpen',
+            type: 'boolean',
+            title: 'Sale status',
+ 
+         },
+         {
+            name: 'isSoldOut',
+            type: 'boolean',
+            title: 'Sold out status',
+ 
+         },
+         {
+            name: 'contentReady',
+            type: 'boolean',
+            title: 'Readiness',
+ 
+         },
+         {
+            name: 'saleDate',
+            type: 'date',
+            title: 'Sale date',
+ 
+         },
+         {
+            name: 'text',
+            type: 'text',
+            title: 'Sale date',
+            options: {
+                isHighlighted: true
+              }
+ 
+         },
+       
     ]
     
 }
