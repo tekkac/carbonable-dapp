@@ -1,7 +1,7 @@
 export default {
-  name: 'animal',
+  name: 'badge',
   type: 'document',
-	title: 'Animal',
+	title: 'Badge',
   of: [
     {
       name: 'name',

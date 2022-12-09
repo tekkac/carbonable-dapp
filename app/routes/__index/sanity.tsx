@@ -5,7 +5,10 @@ import PlusIconWhite from "~/components/Icons/PlusIcon";
 
 import { LinkFooter } from "~/components/Buttons/LinkButton";
 import Carousel from "~/components/Quest/Carousel";
+import { PortableText } from "@portabletext/react";
 
+import PortableTextComponents from  '@portabletext/types'
+import { useEffect, useState } from "react";
 
 
 
@@ -17,7 +20,9 @@ export default function Launchpad() {
 
     // Compose the URL for your project's endpoint and add the query
     let PROJECT_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+    let doc: any
 
+        
     // fetch the content
     fetch(PROJECT_URL)
       .then((res) => res.json())
@@ -43,11 +48,26 @@ export default function Launchpad() {
           let pre = document.querySelector("pre");
           // add the raw data to the preformatted element
           pre.textContent = JSON.stringify(result, null, 2);
+          //doc = result
         }
       })
       .catch((err) => console.error(err));
 
+      // `components` object you'll pass to PortableText
+const components = {
+        block: {
+        // Ex. 1: customizing common block types
+        h1: ({children}) => <h1 className="text-2xl">{children}</h1>,
+        blockquote: ({children}) => <blockquote className="border-l-purple-500">{children}</blockquote>,
+    
+        // Ex. 2: rendering custom styles
+        customHeading: ({children}) => (
+            <h2 className="text-lg text-primary text-purple-700">{children}</h2>
+        ),
+        },
+    }
 
+   
 
     return (
         <div className="grid grid-cols-1 mx-auto mt-4 md:mt-12 lg:mt-6 gap-y-20 ">
@@ -73,17 +93,26 @@ export default function Launchpad() {
                             <div className="font-trash font-bold text-lg mx-60">MINT YOUR BADGES</div>
                             <PlusIconWhite className="w-8 md:w-12"></PlusIconWhite>
                         </div>
+                        
+                        <div className="grid w-full  place-content-center overflow-hidden ">
                         <ul>
                             <li>Loading animals…</li>
                         </ul>
-                        <div className="grid w-full  place-content-center overflow-hidden ">
                         
+                        <PortableText
+                            value={doc} components={components}
+                            />
+                            <p>ech</p>
+                        <h2>Raw data</h2>
                             <pre className="max-w-xl overflow-hidden">
                     ¯\_(ツ)_/¯
                     Your data will show up here when you've configured everything correctly
+                    
                             </pre>
                         </div>
             </div>
         </div>
     )
 }
+
+
